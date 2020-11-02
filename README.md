@@ -1,7 +1,6 @@
----
 Thanks [tiangolo](https://github.com/tiangolo) for providing a docker image of uwsgi+nginx+flask application
 - For more information visit this: https://github.com/tiangolo/uwsgi-nginx-flask-docker
----
+
 # mlmltool
 mlmltool stands for Machine Learning Multitool
 
