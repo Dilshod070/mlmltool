@@ -4,4 +4,6 @@ matplotlib
 sklearn
 streamlit
 flask
+flask_wtf
 flask-sqlalchemy
+flask-migrate

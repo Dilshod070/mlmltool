@@ -1,4 +1,4 @@
-from app.main import db
+from main import db
 
 
 class User(db.Model):
@@ -8,6 +8,10 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
+
+    @staticmethod
+    def get_password_hash(password):
+        return password
 
 
 if __name__ == '__main__':

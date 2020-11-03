@@ -1,11 +1,28 @@
 <!DOCTYPE html>
 <html lang="ru">
     <head>
-      <title>Task Planner </title>
+        {% if title %}
+        <title>{{ title }} - Task Planner</title>
+        {% else %}
+        <title>Task Planner</title>
+        {% endif %}
     </head>
     <body>
-        <div>Task Planner: <a href="/">Home</a></div>
-        <hr>
+        <div>
+            Task Planner:
+            <a href="{{ url_for('hello') }}">Home</a>
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('users') }}">Users</a>
+        </div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
         {% block content %}{% endblock %}
     </body>
 </html>
