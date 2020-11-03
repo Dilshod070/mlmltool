@@ -1,5 +1,5 @@
 #!/bin/bash
 
-sudo docker stop mycontainer && sudo docker rm mycontainer
-sudo docker build -t myimage .
-sudo docker run -d --name mycontainer -p 80:80 myimage
+docker stop mycontainer && docker rm mycontainer
+docker build -t myimage .
+docker run -d --name mycontainer -p 80:80 myimage
