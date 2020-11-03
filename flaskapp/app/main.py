@@ -9,9 +9,8 @@ app.config.from_object(Config)
 db = SQLAlchemy(app)
 
 
-@app.route("/")
-def hello():
-    return f"Hello World from Updated Flask. df = {db}"
+# Import routes, so app could see them
+import routes
 
 
 if __name__ == "__main__":

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<body>
+    <h1>Hello, {{ user.username }}!</h1>
+    <h3>Your tasks today!</h3>
+    {% for task in tasks %}
+    <div>- {{ task.title }}</div>
+    {% endfor %}
+</body>
+{% endblock %}
