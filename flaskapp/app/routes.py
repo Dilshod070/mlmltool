@@ -1,8 +1,8 @@
 from flask import render_template, flash, redirect, url_for
 
-from main import app, db
-from forms import LoginForm
-from models import User
+from app import app, db
+from app.forms import LoginForm
+from app.models import User
 
 
 @app.route("/")
@@ -13,8 +13,8 @@ def hello():
 
 @app.route("/users")
 def users():
-    users = list(User.query.all())
-    return render_template('users.html', users=users)
+    app_users = list(User.query.all())
+    return render_template('users.html', users=app_users)
 
 
 @app.route('/login', methods=['GET', 'POST'])

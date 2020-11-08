@@ -1,7 +1,17 @@
-FROM tiangolo/uwsgi-nginx-flask:python3.6
+FROM python:3.6-buster
 
-COPY ./app /app
-COPY ./requirements.txt /requirements.txt
+WORKDIR /home/flaskapp
 
-RUN python3 -m pip install -r /requirements.txt
-RUN (cd .. && export FLASK_APP=app:app && flask db init && flask db migrate -m "users table" && flask db upgrade)
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
+RUN pip install gunicorn
+
+COPY app app
+COPY migrations migrations
+COPY task_planner.py config.py boot.sh ./
+RUN chmod +x boot.sh
+
+ENV FLASK_APP task_planner.py
+
+EXPOSE 5000
+ENTRYPOINT ["./boot.sh"]
