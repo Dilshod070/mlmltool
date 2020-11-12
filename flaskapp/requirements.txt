@@ -3,3 +3,4 @@ flask_wtf
 flask-sqlalchemy
 flask-migrate
 psycopg2
+flask-login

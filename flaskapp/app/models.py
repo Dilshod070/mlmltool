@@ -1,7 +1,8 @@
-from app import db
+from app import db, login
+from flask_login import UserMixin
 
 
-class User(db.Model):
+class User(UserMixin, db.Model):
 
     __tablename__ = 'planner_user'
 
@@ -18,3 +19,14 @@ class User(db.Model):
         for char in password:
             pwd_hash = pwd_hash * 10 + ord(char)
         return pwd_hash
+
+    def set_password(self, password):
+        self.password_hash = self.get_password_hash(password)
+
+    def check_password(self, password):
+        return self.password_hash == self.get_password_hash(password)
+
+
+@login.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
