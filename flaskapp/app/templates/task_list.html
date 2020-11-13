@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h3>My tasks:</h3>
+    {% for task in tasks %}
+    <div>- {{ task.id }}: {{ task.name }} / {{ task.time_created }}</div>
+    {% endfor %}
+    <br/>
+    <a href="{{ url_for('task_create') }}">Create new task</a>
+{% endblock %}

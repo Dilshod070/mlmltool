@@ -30,7 +30,6 @@ def login():
         correct_data = True
 
         # Search for user in database
-        password_hash = User.get_password_hash(form.password.data)
         user = User.query.filter_by(username=form.username.data).first()
         if user is None:
             user = User(username=form.username.data)

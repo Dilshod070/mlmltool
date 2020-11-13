@@ -11,12 +11,12 @@
         <div>
             Task Planner:
             <a href="{{ url_for('hello') }}">Home</a>
+            <a href="{{ url_for('task_list') }}">My tasks</a>
             {% if current_user.is_anonymous %}
                 <a href="{{ url_for('login') }}">Login</a>
             {% else %}
                 <a href="{{ url_for('logout') }}">Logout</a>
             {% endif %}
-            <a href="{{ url_for('users') }}">Users</a>
         </div>
         {% with messages = get_flashed_messages() %}
         {% if messages %}

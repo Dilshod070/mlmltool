@@ -13,4 +13,4 @@ migrate = Migrate(app, db)
 login = LoginManager(app)
 login.login_view = 'login'
 
-from . import routes
+from app.routes import task_routes, user_routes
