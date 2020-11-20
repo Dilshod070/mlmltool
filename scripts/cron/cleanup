@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "Cleaning Journal"
+journalctl --vacuum-size=20M
