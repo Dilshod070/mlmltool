@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, FloatField
-from wtforms.validators import DataRequired, Optional
+from wtforms.fields.html5 import DecimalRangeField
+from wtforms.validators import DataRequired, Optional, NumberRange
 
 
 class LoginForm(FlaskForm):
@@ -12,7 +13,7 @@ class LoginForm(FlaskForm):
 
 class NewTaskForm(FlaskForm):
     name = StringField('Task Goal', validators=[DataRequired()])
-    complexity = FloatField('Task Complexity (0-10', validators=[Optional()])
-    importance = FloatField('Task Importance (0-10', validators=[Optional()])
-    urgency = FloatField('Task Urgency (0-10', validators=[Optional()])
+    complexity = DecimalRangeField('Task Complexity (0-10)', validators=[NumberRange(min=0, max=100)])
+    importance = DecimalRangeField('Task Importance (0-10)', validators=[NumberRange(min=0, max=100)])
+    urgency = DecimalRangeField('Task Urgency (0-10)', validators=[NumberRange(min=0, max=100)])
     submit = SubmitField('Create')

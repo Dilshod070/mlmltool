@@ -2,6 +2,7 @@ from flask import render_template, redirect, url_for
 from flask_login import current_user, login_required
 
 from app import app, db
+from app.core import count_priority
 from app.forms import NewTaskForm
 from app.models import User, Task
 
@@ -11,6 +12,9 @@ from app.models import User, Task
 def task_list():
     my_id = int(current_user.get_id())
     my_tasks = list(User.query.get(my_id).tasks.all())
+    for task in my_tasks:
+        setattr(task, 'priority', count_priority(task))
+    my_tasks = sorted(my_tasks, key=lambda x: x.priority, reverse=True)
     return render_template('task_list.html', title='List of Tasks', tasks=my_tasks)
 
 

@@ -2,9 +2,22 @@
 
 {% block content %}
     <h3>My tasks:</h3>
-    {% for task in tasks %}
-    <div>- {{ task.id }}: {{ task.name }} / {{ task.time_created }}</div>
-    {% endfor %}
-    <br/>
-    <a href="{{ url_for('task_create') }}">Create new task</a>
+    <table width="60%" border="1" cellpadding="4" valign="top">
+        <tr>
+            <th>Name</th><th>Created time</th>
+            <th>Complexity</th><th>Importance</th><th>Urgency</th>
+            <th>Priority Score</th>
+        </tr>
+        {% for task in tasks %}
+            <tr>
+                <td>{{ task.name }}</td>
+                <td>{{ task.time_created.strftime('%Y-%m-%d %H:%M') }}</td>
+                <td>{{ "{:.1f}".format(task.complexity) }}</td>
+                <td>{{ "{:.1f}".format(task.importance ) }}</td>
+                <td>{{ "{:.1f}".format(task.urgency) }}</td>
+                <th><b>{{ "{:.1f}".format(task.priority) }}</b></th>
+            </tr>
+        {% endfor %}
+    </table>
+    <br/><a href="{{ url_for('task_create') }}">Create new task</a>
 {% endblock %}

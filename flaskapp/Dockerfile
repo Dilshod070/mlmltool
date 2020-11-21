@@ -8,10 +8,10 @@ RUN pip install gunicorn
 
 COPY app app
 COPY migrations migrations
-COPY task_planner.py config.py boot.sh ./
+COPY flaskapp.py config.py boot.sh ./
 RUN chmod +x boot.sh
 
-ENV FLASK_APP task_planner.py
+ENV FLASK_APP flaskapp.py
 
 EXPOSE 5000
 ENTRYPOINT ["./boot.sh"]
