@@ -22,6 +22,7 @@
                         {# Show Nothing #}
                     {% else %}
                         <li><a href="{{ url_for('task_list') }}">My tasks</a></li>
+                        <li><a href={{ url_for('users') }}>Community</a><br/></li>
                     {% endif %}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">

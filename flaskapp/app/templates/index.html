@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 
 {% block app_content %}
-    <h1>Hello {{ current_user.username }}! Welcome to Mlmltool.</h1>
-    <a href={{ url_for('users') }}>List of all Users</a><br/>
+    {% if current_user.is_anonymous %}
+        <h1>Welcome to MlMlTool</h1>
+    {% else %}
+        <h1>Hello {{ current_user.username.capitalize() }}.</h1>
+    {% endif %}
     <a href={{ url_for('task_list') }}>My tasks</a><br/>
 {% endblock %}

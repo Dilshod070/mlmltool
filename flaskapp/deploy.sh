@@ -9,6 +9,6 @@ else
 fi
 
 echo ${DOCKERHOST}
-docker stop mycontainer && docker rm mycontainer
-docker build -t myimage .
-docker run -d --name mycontainer -p 80:5000 -e DOCKERHOST=${DOCKERHOST} -e PSQL_PASSWORD=${PSQL_PASSWORD} myimage
+docker stop flaskapp && docker rm flaskapp
+docker build -t flaskapp-image .
+docker run -d --name flaskapp -p 80:5000 -e DOCKERHOST=${DOCKERHOST} -e PSQL_PASSWORD=${PSQL_PASSWORD} flaskapp-image

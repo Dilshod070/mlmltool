@@ -1,18 +1,11 @@
 {% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
     <h1>Create Task</h1>
-    <form action="" method="post" novalidate>
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.name.label }}: {{ form.name(size=64) }}
-            {% for error in form.name.errors %}
-            <span style="color: #ff0000;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-            <p>{{ form.complexity.label }}: {{ form.complexity }}</p>
-            <p>{{ form.importance.label }}: {{ form.importance }}</p>
-            <p>{{ form.urgency.label }}: {{ form.urgency }}</p>
-        <p>{{ form.submit() }}</p>
-    </form>
+    <div class="row">
+        <div class="col-md-4">
+            {{ wtf.quick_form(form) }}
+        </div>
+    </div>
 {% endblock %}

@@ -18,3 +18,6 @@ class Flaskapp(Tool):
         """
         flaskapp_dir = __file__.split('mlmltool')[0] + 'mlmltool/flaskapp'
         self._run_command('scp', '-r', flaskapp_dir, f'{user}@{host}:{wdir}')
+
+    def logs(self):
+        self._run_command('docker', 'logs', 'flaskapp')
