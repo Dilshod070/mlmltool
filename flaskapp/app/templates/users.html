@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block app_content %}
     <h3>All users in database:</h3>
     {% for user in users %}
     <div>- {{ user.id }}: {{ user.username }}</div>

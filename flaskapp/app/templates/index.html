@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
-{% block content %}
-    <h1>Hello {{ current_user.username }}! Welcome to Task Planner.</h1>
+{% block app_content %}
+    <h1>Hello {{ current_user.username }}! Welcome to Mlmltool.</h1>
     <a href={{ url_for('users') }}>List of all Users</a><br/>
     <a href={{ url_for('task_list') }}>My tasks</a><br/>
 {% endblock %}

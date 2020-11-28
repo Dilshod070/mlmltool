@@ -1,32 +1,52 @@
-<!DOCTYPE html>
-<html lang="ru">
-    <head>
-        {% if title %}
-        <title>{{ title }} - Task Planner</title>
-        {% else %}
-        <title>Task Planner</title>
-        {% endif %}
-    </head>
-    <body>
-        <div>
-            Task Planner:
-            <a href="{{ url_for('hello') }}">Home</a>
-            <a href="{{ url_for('task_list') }}">My tasks</a>
-            {% if current_user.is_anonymous %}
-                <a href="{{ url_for('login') }}">Login</a>
-            {% else %}
-                <a href="{{ url_for('logout') }}">Logout</a>
-            {% endif %}
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}
+    {% if title %}{{ title }} - Task Planner{% else %}Task Planner{% endif %}
+{% endblock %}
+
+{% block navbar %}
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                {# Not Used Currently #}
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ url_for('index') }}">MlMlTool</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    {% if current_user.is_anonymous %}
+                        {# Show Nothing #}
+                    {% else %}
+                        <li><a href="{{ url_for('task_list') }}">My tasks</a></li>
+                    {% endif %}
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if current_user.is_anonymous %}
+                        <li><a href="{{ url_for('login') }}">Login</a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
+    </nav>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
         {% with messages = get_flashed_messages() %}
         {% if messages %}
-        <ul>
             {% for message in messages %}
-            <li>{{ message }}</li>
+            <div class="alert alert-info" role="alert">{{ message }}</div>
             {% endfor %}
-        </ul>
         {% endif %}
         {% endwith %}
-        {% block content %}{% endblock %}
-    </body>
-</html>
+
+        {# содержимое приложения которое должно быть предоставлено в блоке app_content #}
+        {% block app_content %}{% endblock %}
+    </div>
+{% endblock %}

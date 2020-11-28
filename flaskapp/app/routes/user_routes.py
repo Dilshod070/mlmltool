@@ -8,7 +8,7 @@ from app.models import User
 
 @app.route("/")
 @app.route("/index")
-def hello():
+def index():
     return render_template('index.html')
 
 
@@ -22,7 +22,7 @@ def users():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('hello'))
+        return redirect(url_for('index'))
 
     form = LoginForm()
     if form.validate_on_submit():
@@ -38,13 +38,13 @@ def login():
             db.session.commit()
             flash('Congratulations, you are now a registered user!')
             login_user(user, remember=form.remember_me.data)
-            return redirect(url_for('hello'))
+            return redirect(url_for('index'))
         elif user.check_password(form.password.data):
             flash('Invalid username or password')
             return redirect(url_for('login'))
         else:
             login_user(user, remember=form.remember_me.data)
-            return redirect(url_for('hello'))
+            return redirect(url_for('index'))
 
     return render_template('login.html', title='Sign In', form=form)
 
@@ -52,4 +52,4 @@ def login():
 @app.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('hello'))
+    return redirect(url_for('index'))

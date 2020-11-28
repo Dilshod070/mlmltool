@@ -8,5 +8,6 @@ flask_wtf
 flask-sqlalchemy
 flask-migrate
 flask-login
+flask-bootstrap
 psycopg2
 fire
